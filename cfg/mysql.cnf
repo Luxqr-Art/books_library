@@ -1,0 +1,5 @@
+[client]
+database = books_library
+user = luxqr
+password = 231196Lo
+default-character-set = utf8
