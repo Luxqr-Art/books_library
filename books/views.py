@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from books.models import *
-from rest_framework import  generics
+from rest_framework import generics
 from .serializers import BookSerializer
 
 
