@@ -9,6 +9,7 @@ urlpatterns = [
     path('listsql1/', books_sql2),
     path('listomr/', books_list),
     path('ser/', BooksList.as_view()),
+    path('create', BookCreate.as_view()),
     path('rud/<int:pk>/', BookRUD.as_view()),
 
 ]

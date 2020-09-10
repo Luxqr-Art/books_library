@@ -20,7 +20,7 @@ class Books(models.Model):
         return ', '.join([i.book_genre for i in self.genre.all()])
 
     def __str__(self):
-        return self.title, self.genres
+        return self.title
 
 
 class BookGenre(models.Model):
