@@ -2,6 +2,7 @@ please install this packets
 
 asgiref==3.2.10
 Django==3.1
+django-filter==2.3.0
 django-phonenumber-field==5.0.0
 djangorestframework==3.11.1
 mysqlclient
