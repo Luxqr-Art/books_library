@@ -4,5 +4,5 @@ from .views import *
 urlpatterns = [
     path('', welcome),
     path('ormjson/', journal_json),
-    # path('listsql/', books_sql1),
+    path('list/', JournalList.as_view()),
 ]

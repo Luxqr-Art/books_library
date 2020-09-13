@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 
 
 class Books(models.Model):
@@ -21,7 +24,7 @@ class Books(models.Model):
 
     def __str__(self):
         return self.title
-
+    owner = models.ForeignKey(User, default=1, blank=False, null=False, verbose_name='Owner', on_delete=models.CASCADE)
 
 class BookGenre(models.Model):
     class Meta:

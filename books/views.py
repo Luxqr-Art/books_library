@@ -2,17 +2,29 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse, JsonResponse
 from books.models import *
-from rest_framework import generics
-from .serializers import BookSerializer
+from rest_framework import generics, filters
+from .serializers import *
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import MyCustomFilter
 
 
 class BooksList(generics.ListAPIView):
     queryset = Books.objects.all()
     serializer_class = BookSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter, MyCustomFilter]
+    search_fields = ['title']
+    ordering_filter = ['title']
+    filterset_fields = ['author', 'genre']
+
+
+class AuthorList(generics.ListAPIView):
+    queryset = BooksAuthor.objects.all()
+    serializer_class = AuthorSerialize
 
 
 class BookCreate(generics.CreateAPIView):
     serializer_class = BookSerializer
+
 
 #retrive /update / delete
 class BookRUD(generics.RetrieveUpdateDestroyAPIView):
@@ -20,9 +32,19 @@ class BookRUD(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
 
 
+class BooksFilterAuthor(generics.ListAPIView):
+    serializer_class = BookSerializer
+
+    def get_queryset(self):
+        return Books.objects.filter(author=self.kwargs['author_id'])
 
 
 
+class BooksShot(generics.ListAPIView):
+    serializer_class = BookListSerializer
+
+    def get_queryset(self):
+        return Books.objects.filter(author=self.kwargs['author_id'])
 
 
 
